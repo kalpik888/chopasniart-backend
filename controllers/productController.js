@@ -62,4 +62,28 @@ const getProductsByCategory = async (req, res) => {
     }
 };
 
-module.exports = { createProduct, getProducts, getProductsByCategory };
+// @desc    Get single product by ID
+// @route   GET /api/products/:id
+const getProductById = async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id);
+
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        res.json(product);
+    } catch (error) {
+        console.error(error);
+
+        // specific check: if the ID is formatted wrong (not a valid ObjectId), return 404 instead of 500
+        if (error.kind === 'ObjectId') {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
+
+module.exports = { createProduct, getProducts, getProductsByCategory , getProductById};

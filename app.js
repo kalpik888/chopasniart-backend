@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const productRoutes = require('./routes/productRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 
 
 // Connect Database
@@ -21,5 +22,7 @@ app.use('/api/products', productRoutes);
 app.get('/', (req, res) => {
     res.send('Chopasni Art Emporium');
 });
+
+app.use('/api/contact', contactRoutes);  // Your NEW contact form
 
 module.exports = app;

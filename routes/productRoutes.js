@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const upload = require('../config/cloudinary');
-const { createProduct, getProducts, getProductsByCategory } = require('../controllers/productController');
+const { createProduct, getProducts, getProductsByCategory, getProductById } = require('../controllers/productController');
 
 // 👇 CHANGE THIS SECTION
 router.post('/', (req, res, next) => {
@@ -22,5 +22,7 @@ router.post('/', (req, res, next) => {
 }, createProduct);
 
 router.get('/', getProductsByCategory);
+
+router.get('/:id', getProductById);                             
 
 module.exports = router;
