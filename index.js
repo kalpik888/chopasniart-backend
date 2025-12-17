@@ -1,4 +1,4 @@
-const app = require('./src/app');
+const app = require('./app');
 
 // 1. FOR GOOGLE CLOUD FUNCTIONS
 // We export the app so Google can handle the request.
